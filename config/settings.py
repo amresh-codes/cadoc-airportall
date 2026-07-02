@@ -26,7 +26,10 @@ SECRET_KEY = 'django-insecure-5$6!*a58=s&mloct6_z4a#f(jvwq7ng%mw#=59m6t1vh=hkhuu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config(
+    "ALLOWED_HOSTS",
+    default="localhost,127.0.0.1"
+).split(",")
 
 
 # Application definition
@@ -148,7 +151,7 @@ MEDIA_ROOT=BASE_DIR/"media"
 
 from decouple import config
 SECRET_KEY=config('SECRET_KEY')
-DEBUG=config('DEBUG',cast=bool)
+DEBUG = config("DEBUG", cast=bool, default=False)
 
 AUTH_USER_MODEL='accounts.User'
 
